@@ -25,6 +25,7 @@ import { aspectRatioOptions, defaultValues, transformationTypes } from "@/consta
 import { CustomField } from "./CustomField"
 import { useState, useTransition } from "react"
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils"
+import MediaUploader from "./MediaUploader"
 
 export const formSchema = z.object({
   title: z.string(),
@@ -37,7 +38,7 @@ export const formSchema = z.object({
 const TransformationForm = ({action, data = null, userId, type, creditBalance, config = null}: TransformationFormProps) => {
 
   const transformationType = transformationTypes[type];
-  const [Image, setImage] = useState(data)
+  const [image, setImage] = useState(data)
   const [newTransformation, setNewTransformation] = useState<Transformations | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isTransforming, setIsTransforming] = useState(false);
@@ -181,6 +182,23 @@ const TransformationForm = ({action, data = null, userId, type, creditBalance, c
             )}
           </div>
         )}
+
+        <div className="media-uploader-field">
+          <CustomField 
+            control={form.control}
+            name="publicId"
+            className="flex size-full flex-col"
+            render={({field}) => (
+              <MediaUploader 
+                onValueChange={field.onChange}
+                setImage={setImage}
+                publicId={field.value}
+                image={image}
+                type={type}
+              />
+            )}
+          />
+        </div>
 
         <div className="flex felx-col gap-4">
           <Button type="submit" className="submit-button capitalize" disabled={isTransforming || newTransformation === null} onClick={onTransformHandler}>
