@@ -4,7 +4,7 @@ export interface IImage extends Document{
     title: string;
     transformationType: string;
     publicId: string;
-    secureUrl: string; // URL type is typically represented as a string in TypeScript for the URL's value
+    secureURL: string; // URL type is typically represented as a string in TypeScript for the URL's value
     width?: number; // Optional because it's not marked as required
     height?: number; // Optional because it's not marked as required
     config?: object; // Could be more specifically typed if the structure of config is known
@@ -22,11 +22,11 @@ const ImageSchema = new Schema({
     title: {type: String, required: true},
     transformationType: {type: String, required: true},
     publicId: {type: String, required: true},
-    secureUrl: {type: URL, required: true},
+    secureURL: {type: String, required: true},
     width: {type: Number},
     height: {type: Number},
     config: {type: Object},
-    transformUrl: {type: URL},
+    transformUrl: {type: String},
     aspectRatio: {type: String},
     color: {type: String},
     prompt: {type: String},
