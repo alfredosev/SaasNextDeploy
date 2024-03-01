@@ -5,6 +5,8 @@ import Image from 'next/image'
 import React from 'react'
 
 const TransformedImage = ({image, type, title, transformationConfig, isTransforming, setIsTransforming, hasDownload=false}: TransformedImageProps) => {
+    const downloadHandler = () => {}
+    
   return (
     <div className='flex flex-col gap-4'>
         <div className='flex-between'>
